@@ -18,7 +18,7 @@
 #
 #     apt-get install -t experimental pass
 #
-# You will also need a copy of this script:
+# You will also need a copy of this extension:
 #
 #     git clone https://github.com/OpenTechStrategies/pass-git-svn
 #
