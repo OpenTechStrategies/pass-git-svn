@@ -82,12 +82,17 @@
 # 2017 James Vasile <james@opentechstrategies.com> and is released
 # under the terms of the GNU General Public License, Version 3 or
 # later.
-
-## Dump documentation
-[[ "$0" != *"pass"* ]] && \
-		tail -n +3 $0 | sed "s/^\#\# //" | grep ^\# | sed "s/\#\#\#\#\#\#\#\#\#\#*//" | sed "s/. \?//" && \
+#
+###########################################################
+# ## Documentation
+#
+# This extension will display documentation if run directly as a bash
+# script or as an extension if you do `pass git-svn help`
+[[ "$0" != *"pass"* || $1 == "help" ]] && \
+		tail -n +3 ${BASH_SOURCE[0]} | sed "s/^\#\# //" | grep ^\# | sed "s/\#\#\#\#\#\#\#\#\#\#*//" | sed "s/. \?//" && \
 		exit
 
+## Begin extension code here
 set_git "$PREFIX/"
 if [[ $1 == "clone" ]]; then
 		INNER_GIT_DIR="$PREFIX"
