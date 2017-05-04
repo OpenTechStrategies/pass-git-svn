@@ -74,7 +74,7 @@
 # ## Contributing
 #
 # Please file bug reports and issue patch requests in the GitHub
-# repository.
+# repository.  All participation is welcome!
 #
 # This extension is based on some code found in password-store.sh from
 # the [standard linux password
