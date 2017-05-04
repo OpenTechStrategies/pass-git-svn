@@ -54,13 +54,19 @@ saving all the files to update the list of keys that will decrypt
 them.
 
 
-## Two versions of pass
+## Two instances of pass
 
 If you already have another pass instance running, you can add
 something like this to .bashrc
 
-    alias workpass='EDITOR=e_blocking PASSWORD_STORE_ENABLE_EXTENSIONS=true PASSWORD_STORE_DIR=~/.work-password-store pass'
+    alias workpass='PASSWORD_STORE_ENABLE_EXTENSIONS=true PASSWORD_STORE_DIR=~/.work-password-store pass'
 
+This will let you do `workpass git-svn fetch` to sync your work
+passwords and keep them separate from your usual ~/.password-store.
+You can continue to access your non-work passwords with `pass`.  You
+can also use symlinks to access your work passwords from your
+non-work password store.  You'll still need to workpass for git-svn
+commands, though.
 
 ## Contributing
 
