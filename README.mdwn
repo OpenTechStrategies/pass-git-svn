@@ -11,7 +11,8 @@ does that by using git-svn.
 You will need a newer version of pass that has extensions enabled.
 Install pass 1.7+ from the [github
 repo](https://git.zx2c4.com/password-store) or from Debian's
-experimental repository:
+experimental repository (assuming you have the experimental repo
+pinned in /etc/apt/preferences):
 
     apt-get install -t experimental pass
 
