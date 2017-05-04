@@ -77,11 +77,12 @@
 # repository.
 #
 # This extension is based on some code found in password-store.sh from
-# the [standard linux password manager](https://www.passwordstore.org/).
-# That code is licensed under GPLv2+.  This extension is copyright
-# 2017 James Vasile <james@opentechstrategies.com> and is released
-# under the terms of the GNU General Public License, Version 3 or
-# later.
+# the [standard linux password
+# manager](https://www.passwordstore.org/).  That code is licensed
+# under GPLv2+.  This extension is copyright 2017 James Vasile
+# <james@opentechstrategies.com> and is released under the terms of
+# the [GNU General Public License, Version
+# 3](https://www.gnu.org/licenses/gpl-3.0-standalone.html) or later.
 #
 ###########################################################
 # ## Documentation
