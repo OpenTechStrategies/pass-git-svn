@@ -1,9 +1,9 @@
 # pass-git-svn
 
 This is an extension to the [standard linux password
-manager](https://www.passwordstore.org/) that passwords to back up
-to an svn repository instead of a git repository.  This extension
-does that by using git-svn.
+manager](https://www.passwordstore.org/) that allows passwords to
+back up to an svn repository instead of a git repository.  This
+extension does that by using git-svn.
 
 
 ## Install
