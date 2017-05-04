@@ -19,7 +19,7 @@
 #
 # You will also need a copy of this script:
 #
-#     git clone <INSERT GITHUB STUFF HERE>
+#     git clone https://github.com/jvasile/pass-git-svn.git
 #
 # Setup your environment (you might want to add this to .bashrc):
 #
