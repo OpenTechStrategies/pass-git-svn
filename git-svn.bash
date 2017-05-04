@@ -19,7 +19,7 @@
 #
 # You will also need a copy of this script:
 #
-#     git clone https://github.com/jvasile/pass-git-svn.git
+#     git clone https://github.com/OpenTechStrategies/pass-git-svn
 #
 # Setup your environment (you might want to add this to .bashrc):
 #
@@ -61,7 +61,7 @@
 # If you already have another pass instance running, you can add
 # something like this to .bashrc
 #
-#    alias workpass='EDITOR=e_blocking PASSWORD_STORE_ENABLE_EXTENSIONS=true PASSWORD_STORE_DIR=~/.work-password-store pass'
+#     alias workpass='EDITOR=e_blocking PASSWORD_STORE_ENABLE_EXTENSIONS=true PASSWORD_STORE_DIR=~/.work-password-store pass'
 #
 ###########################################################
 # ## Contributing
