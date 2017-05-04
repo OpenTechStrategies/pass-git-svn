@@ -57,9 +57,9 @@
 # them.
 #
 ###########################################################
-# ## Two instances of pass
+# ## Two pass configurations
 #
-# If you already have another pass instance running, you can add
+# If you already have pass running with another configuration, you can add
 # something like this to .bashrc
 #
 #     alias workpass='PASSWORD_STORE_ENABLE_EXTENSIONS=true PASSWORD_STORE_DIR=~/.work-password-store pass'
