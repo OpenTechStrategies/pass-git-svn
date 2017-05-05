@@ -89,7 +89,7 @@
 #
 # This extension will display documentation if run directly as a bash
 # script or as an extension if you do `pass git-svn help`
-if [[ "$0" == ${BASH_SOURCE[0]} || $1 == "help" ]]; then
+if [[ "$0" == ${BASH_SOURCE[0]} || $1 == "help" || -z "$1" ]]; then
 		tail -n +3 ${BASH_SOURCE[0]} | sed "s/^\#\# //" | grep ^\# | sed "s/\#\#\#\#\#\#\#\#\#\#*//" | sed "s/. \?//"
 		exit
 fi
