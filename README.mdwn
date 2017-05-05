@@ -86,4 +86,4 @@ the [GNU General Public License, Version
 ## Documentation
 
 This extension will display documentation if run directly as a bash
-script or as an extension if you do `pass git-svn help`
+script or as an extension if you do `pass git-svn` or `pass git-svn help`
