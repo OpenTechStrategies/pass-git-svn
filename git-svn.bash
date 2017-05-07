@@ -57,6 +57,14 @@
 # them.
 #
 ###########################################################
+# ## Security
+#
+# If you have a group of people sharing a repository, be aware that if
+# any of them can change .gpg-id, they can potentially add themselves
+# to .gpg-id files in directories to which they are not authorized.
+# You might want to manage your repository to prevent this.
+#
+###########################################################
 # ## Dependencies
 #
 # This extension depends on git-svn and pass being present on the
