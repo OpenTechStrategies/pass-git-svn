@@ -5,7 +5,8 @@ GIT:=https://github.com/OpenTechStrategies/pass-git-svn.git
 GIT_BROWSE:=https://github.com/OpenTechStrategies/pass-git-svn
 SHORT_DESCRIPTION:=pass extension to enable use of svn repositories
 LONG_DESCRIPTION:="This is an extension to the [standard linux password]\\n manager \(https://www.passwordstore.org/\) that allows passwords to\\n back up to an svn repository instead of a git repository.  This\\n	extension does that by using git-svn."
-
+DEBFULLNAME?=James Vasile
+DEBEMAIL?=james@jamesvasile.com
 VERSION:=$(shell git describe --tags | sed "s/-/./" | sed "s/-.*//")
 
 BASENAME:=${PROG}-${VERSION}
@@ -14,7 +15,10 @@ DEBFOLDERNAME:=build/deb/${BASENAME}
 TARNAME:=${PROG}_${VERSION}
 TARFOLDERNAME:=build/tar/${TARNAME}
 
-all: distrib
+all: distrib README.mdwn
+
+README.mdwn: git-svn.bash
+	@./git-svn.bash > README.mdwn
 
 distrib: targz deb
 
@@ -25,8 +29,8 @@ distrib/${DEBNAME}: git-svn.bash Makefile
 	@mkdir -p distrib
 	@cp ${BIN} ${DEBFOLDERNAME}
 	@cd ${DEBFOLDERNAME}; \
-		DEBFULLNAME="James Vasile" \
-		DEBEMAIL="james@jamesvasile.com" \
+		DEBFULLNAME="${DEBFULLNAME}" \
+		DEBEMAIL="${DEBEMAIL}" \
 		dh_make -y -i -c gpl3 --createorig; \
 		echo ${BIN} /usr/lib/password-store/extensions > debian/install 
 	@./git-svn.bash | go-md2man > ${DEBFOLDERNAME}/debian/manpage.1
@@ -67,8 +71,9 @@ distrib/${TARNAME}.tar: git-svn.bash Makefile
 	@git describe --tags	> ${TARFOLDERNAME}/VERSION
 	@cd build/tar; tar -c -f ../../distrib/${TARNAME}.tar ${TARNAME}
 
-
-clean:
+distclean:
 	@rm -rf distrib build
 
-.PHONY: distrib
+clean: distclean
+
+.PHONY: distrib 
