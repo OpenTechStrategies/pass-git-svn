@@ -55,6 +55,11 @@ saving all the files to update the list of keys that will decrypt
 them.
 
 
+## Dependencies
+
+This extension depends on git-svn and pass being present on the
+system.
+
 ## Two pass configurations
 
 If you already have pass running with another configuration, you can add

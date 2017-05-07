@@ -39,7 +39,7 @@ distrib/${DEBNAME}: git-svn.bash Makefile
 		sed -i "s!^\\#Vcs-Git: .*!Vcs-Git: ${GIT}!" control; \
 		sed -i "s!^\\#Vcs-Browser: .*!Vcs-Browser: ${GIT_BROWSE}!" control; \
 		sed -i "s!^Description: .*!Description: ${SHORT_DESCRIPTION}!" control; \
-		sed -i "s!^Depends: !Depends: pass (>= 1.7.1), !" control; \
+		sed -i "s!^Depends: !Depends: git-svn, pass (>= 1.7.1), !" control; \
 		sed -i '$$ d' control; \
 		echo " ${LONG_DESCRIPTION}" >> control; \
 		sed -i "s!^Source: .*!Source: ${GIT_BROWSE}!" copyright; \

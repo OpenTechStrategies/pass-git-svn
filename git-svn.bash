@@ -57,6 +57,12 @@
 # them.
 #
 ###########################################################
+# ## Dependencies
+#
+# This extension depends on git-svn and pass being present on the
+# system.
+#
+###########################################################
 # ## Two pass configurations
 #
 # If you already have pass running with another configuration, you can add
