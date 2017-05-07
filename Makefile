@@ -71,4 +71,4 @@ distrib/${TARNAME}.tar: git-svn.bash Makefile
 clean:
 	@rm -rf distrib build
 
-.PHONY: changelog distrib VERSION
+.PHONY: distrib
