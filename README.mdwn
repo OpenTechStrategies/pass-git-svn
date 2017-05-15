@@ -25,6 +25,7 @@ Set up your environment (you might want to add this to .bashrc):
     export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 
 Install the software and clone the svn repo:
+
     mkdir -p ~/.password-store/.extensions
     cp <path-to-pass-git-svn-repo>/git-svn.bash ~/.password-store/.extensions
     chmod +x ~/.password-store/.extensions/git-svn.bash
