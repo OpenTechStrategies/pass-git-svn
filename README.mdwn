@@ -20,7 +20,7 @@ You will also need a copy of this extension:
 
     git clone https://github.com/OpenTechStrategies/pass-git-svn
 
-Setup your environment (you might want to add this to .bashrc):
+Set up your environment (you might want to add this to .bashrc):
 
     export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 
