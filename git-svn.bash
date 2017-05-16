@@ -113,6 +113,7 @@ set_git "$PREFIX/"
 if [[ $1 == "clone" ]]; then
 		INNER_GIT_DIR="$PREFIX"
 		pushd "$INNER_GIT_DIR" > /dev/null
+		rm -f /tmp/.gpg-id.orig
 		[[ -e .gpg-id ]] && mv .gpg-id /tmp/.gpg-id.orig
 		touch .gitignore
 		grep -q .gitattributes .gitignore || echo .gitattributes >> .gitignore
@@ -120,7 +121,7 @@ if [[ $1 == "clone" ]]; then
 		grep -q .extensions .gitignore || echo .extensions >> .gitignore
 		shift
 		git svn clone "$1" . || exit 1
-		cat /tmp/.gpg-id.orig >> .gpg-id
+		[[ -e /tmp/.gpg-id.orig ]] && cat /tmp/.gpg-id.orig >> .gpg-id
 		sort -u .gpg-id -o .gpg-id
 		popd > /dev/null
 		git_add_file "$PREFIX" "Add current contents of password store."
