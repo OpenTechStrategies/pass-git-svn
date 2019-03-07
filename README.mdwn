@@ -59,10 +59,20 @@ them.
 ## Security
 
 If you have a group of people sharing a repository, be aware that if
-any of them can change .gpg-id, they can potentially add themselves
-to .gpg-id files in directories to which they are not authorized.
-You might want to manage your repository to prevent this.
+any of them can change `.gpg-id` files in the tree, they can
+potentially add themselves to a `.gpg-id` file in a directory whose
+passwords they should not have access to.
 
+While this would not automatically grant them the ability to read
+password files that they couldn't read before (since they wouldn't be
+able to decrypt an existing file in order to re-encrypt it with a new
+list of keys that now includes their key), there is still the
+possibility that the next fully-authorized person who comes along and
+re-encrypts a file would then accidentally include the new key.  
+
+You might want to manage your repository to prevent this from
+happening.  You could do that through authz, or through server-side
+pre-commit hooks.
 
 ## Dependencies
 
