@@ -8,13 +8,12 @@ extension does that by using git-svn.
 
 ## Install
 
-You will need a newer version of pass that has extensions enabled.
-Install pass 1.7+ from [its git
-repository](https://git.zx2c4.com/password-store) or from Debian's
-experimental repository (assuming you have the experimental repo
-pinned in /etc/apt/preferences):
+You will need a recentish version of pass that has extensions
+enabled.  Install pass 1.7+ from [its git
+repository](https://git.zx2c4.com/password-store) or from your Linux
+distribution's repository:
 
-    apt-get install -t experimental pass
+    apt-get install -y pass
 
 You will also need a copy of this extension:
 
@@ -25,11 +24,10 @@ Set up your environment (you might want to add this to .bashrc):
     export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 
 Install the software and clone the svn repo:
-
     mkdir -p ~/.password-store/.extensions
     cp <path-to-pass-git-svn-repo>/git-svn.bash ~/.password-store/.extensions
     chmod +x ~/.password-store/.extensions/git-svn.bash
-    pass git-svn clone https://example.com/repos/work/trunk/.password-store
+    pass git-svn clone https://example.com/repos/work/trunk/.password-store ~/.password-store
 
 
 ## Using pass-git-svn
@@ -68,11 +66,12 @@ password files that they couldn't read before (since they wouldn't be
 able to decrypt an existing file in order to re-encrypt it with a new
 list of keys that now includes their key), there is still the
 possibility that the next fully-authorized person who comes along and
-re-encrypts a file would then accidentally include the new key.  
+re-encrypts a file would then accidentally include the new key.
 
 You might want to manage your repository to prevent this from
 happening.  You could do that through authz, or through server-side
 pre-commit hooks.
+
 
 ## Dependencies
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # # pass-git-svn
-# 
+#
 # This is an extension to the [standard linux password
 # manager](https://www.passwordstore.org/) that allows passwords to
 # back up to an svn repository instead of a git repository.  This
@@ -10,19 +10,18 @@
 ############################################################
 # ## Install
 #
-# You will need a newer version of pass that has extensions enabled.
-# Install pass 1.7+ from the [github
-# repo](https://git.zx2c4.com/password-store) or from Debian's
-# experimental repository (assuming you have the experimental repo
-# pinned in /etc/apt/preferences):
+# You will need a recentish version of pass that has extensions
+# enabled.  Install pass 1.7+ from [its git
+# repository](https://git.zx2c4.com/password-store) or from your Linux
+# distribution's repository:
 #
-#     apt-get install -t experimental pass
+#     apt-get install -y pass
 #
 # You will also need a copy of this extension:
 #
 #     git clone https://github.com/OpenTechStrategies/pass-git-svn
 #
-# Setup your environment (you might want to add this to .bashrc):
+# Set up your environment (you might want to add this to .bashrc):
 #
 #     export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 #
@@ -30,7 +29,7 @@
 #     mkdir -p ~/.password-store/.extensions
 #     cp <path-to-pass-git-svn-repo>/git-svn.bash ~/.password-store/.extensions
 #     chmod +x ~/.password-store/.extensions/git-svn.bash
-#     pass git-svn clone https://example.com/repos/work/trunk/.password-store
+#     pass git-svn clone https://example.com/repos/work/trunk/.password-store ~/.password-store
 #
 ############################################################
 # ## Using pass-git-svn
@@ -48,7 +47,7 @@
 # can restrict people by leaving them out of that file.  TODO: verify
 # that lots of people in a parent dir is effectively restricted by fewer
 # people in the subdir .gpg-id.
-# 
+#
 # Note that adding somebody to the .gpg-id does not actually
 # re-encrypt all the files in that directory with that person's key.
 # Same with removing a person.  TODO: investigate whether the init
@@ -60,9 +59,20 @@
 # ## Security
 #
 # If you have a group of people sharing a repository, be aware that if
-# any of them can change .gpg-id, they can potentially add themselves
-# to .gpg-id files in directories to which they are not authorized.
-# You might want to manage your repository to prevent this.
+# any of them can change `.gpg-id` files in the tree, they can
+# potentially add themselves to a `.gpg-id` file in a directory whose
+# passwords they should not have access to.
+#
+# While this would not automatically grant them the ability to read
+# password files that they couldn't read before (since they wouldn't be
+# able to decrypt an existing file in order to re-encrypt it with a new
+# list of keys that now includes their key), there is still the
+# possibility that the next fully-authorized person who comes along and
+# re-encrypts a file would then accidentally include the new key.
+#
+# You might want to manage your repository to prevent this from
+# happening.  You could do that through authz, or through server-side
+# pre-commit hooks.
 #
 ###########################################################
 # ## Dependencies
@@ -125,7 +135,7 @@ if [[ $1 == "clone" ]]; then
 		sort -u .gpg-id -o .gpg-id
 		popd > /dev/null
 		git_add_file "$PREFIX" "Add current contents of password store."
-		
+
 		echo '*.gpg diff=gpg' > "$PREFIX/.gitattributes"
 		git_add_file .gitattributes "Configure git repository for gpg file diff."
 		git -C "$INNER_GIT_DIR" config --local diff.gpg.binary true
@@ -139,5 +149,3 @@ elif [[ -n $INNER_GIT_DIR ]]; then
 else
 		die "Error: the password store is not a git-svn repository. Try \"$PROGRAM git-svn init\"."
 fi
-
-
