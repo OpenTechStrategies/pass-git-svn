@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 """Take the git log and generate a changelog.  We assume the first
-commit is 0.0.  Tags of the form [0-9]+\.[0-9]+ give major and minor
-release numbers.  The third number in the version triplet is just the
-number of commits past the major/minor release tag.
+commit is 0.0.0.  Tags of the form v[0-9]+\.[0-9]+(\.[0-9]+)* give
+major and minor release numbers.  We count up from the third number in
+the version triplet, incrementing it once per commit.
 
 The changelog can be generated from the git log and should never be
 edited manually.
@@ -62,21 +62,32 @@ for commit in reversed(commits):
         line = line[7:]
 
     # Set tag to version number or None
-    tag = re.find(r"tag: ([0-9]+\.[0-9]+)", line)[0]
+    tag = re.find(r"tag: v([0-9]+\.[0-9]+)", line)[0]
     if tag:
-        versions.append(tag+".0")
+        if len(tag.split('.')) == 2:
+            tag += ".0"
+        versions.append(tag)
     else:
         (major, minor, count) = versions[-1].split('.')
         versions.append("%s.%s.%s" % (major, minor, int(count)+1))
 
-# Print the changelog
-versions.reverse()
-for commit, version in zip(commits, versions):
-    print("%s (%s-1) unstable; urgency=medium" % (prog, version))
-    lines = commit.split("\n")
-    commit = "\n".join(lines[3:])
-    print(commit)
-    author = lines[1].split(": ")[1]
-    date = dateutil.parser.parse(lines[2].split(": ")[1])
-    date = date.strftime("%a, %d %B %Y %H:%M:%S %z")
-    print(" -- %s  %s\n" % (author, date))
+def get_changelog(commits, versions):
+    ret = ""
+    versions.reverse()
+    for commit, version in zip(commits, versions):
+        ret += "%s (%s-1) unstable; urgency=medium" % (prog, version)
+        lines = commit.split("\n")
+        commit = "\n".join(lines[3:])
+        ret += commit
+        author = lines[1].split(": ")[1]
+        date = dateutil.parser.parse(lines[2].split(": ")[1])
+        date = date.strftime("%a, %d %B %Y %H:%M:%S %z")
+        ret += " -- %s  %s\n" % (author, date)
+    return ret
+
+
+if len(sys.argv) > 1 and sys.argv[1] == "--get-version":
+    print(versions[-1])
+else:
+    changelog = get_changelog(commits, versions)
+    print(changelog)

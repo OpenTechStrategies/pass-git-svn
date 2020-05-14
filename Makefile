@@ -7,7 +7,7 @@ SHORT_DESCRIPTION:=pass extension to enable use of svn repositories
 LONG_DESCRIPTION:="This is an extension to the [standard linux password]\\n manager \(https://www.passwordstore.org/\) that allows passwords to\\n back up to an svn repository instead of a git repository.  This\\n	extension does that by using git-svn."
 DEBFULLNAME?=James Vasile
 DEBEMAIL?=james@jamesvasile.com
-VERSION:=$(shell git describe --tags | sed "s/-/./" | sed "s/-.*//")
+VERSION:=$(shell ./scripts/git2changelog --get-version)
 
 BASENAME:=${PROG}-${VERSION}
 DEBNAME:=${PROG}_${VERSION}-1_all.deb
