@@ -10,26 +10,34 @@
 ############################################################
 # ## Install
 #
-# You will need a recentish version of pass that has extensions
-# enabled.  Install pass 1.7+ from [its git
-# repository](https://git.zx2c4.com/password-store) or from your Linux
-# distribution's repository:
+# If you are on Debian, the easiest install path is:
 #
 #     apt-get install -y pass
 #
-# You will also need a copy of this extension:
+# Then install the latest .deb from
+# [GitHub](https://github.com/OpenTechStrategies/pass-git-svn/releases). After
+# that, proceed to "Setting Up Your Environment", below
+#
+# If you are not on Debian, install `pass` version 1.7 or later from
+# your system's package repositories or from [its git
+# repository](https://git.zx2c4.com/password-store).  Then put an
+# executable copy of the `git-svn.bash` script in
+# /usr/lib/password-store/extensions.  You can get a copy of this
+# extension via git:
 #
 #     git clone https://github.com/OpenTechStrategies/pass-git-svn
 #
-# Set up your environment (you might want to add this to .bashrc):
+# ## Setting Up Your Environment
+#
+# Tell `pass` where to find extensions:
+#
+#     export PASSWORD_STORE_EXTENSIONS_DIR=/usr/lib/password-store/extensions
+#
+#
+# Tell `pass` to use extensions:
 #
 #     export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 #
-# Install the software and clone the svn repo:
-#     mkdir -p ~/.password-store/.extensions
-#     cp <path-to-pass-git-svn-repo>/git-svn.bash ~/.password-store/.extensions
-#     chmod +x ~/.password-store/.extensions/git-svn.bash
-#     pass git-svn clone https://example.com/repos/work/trunk/.password-store ~/.password-store
 #
 ############################################################
 # ## Using pass-git-svn
@@ -40,7 +48,10 @@
 # rebase` to pull down changes.  Then, use `pass git-svn dcommit` to
 # send your changes up to the svn server.
 #
-############################################################
+# ## Cloning A Password Repository
+#
+#     pass git-svn clone https://example.com/repos/work/trunk/.password-store ~/.password-store
+#
 # ## Authorizing new people to read/write to the password store
 #
 # Just add them to .gpg-id.  This works on a per-directory basis, so you
@@ -77,8 +88,9 @@
 ###########################################################
 # ## Dependencies
 #
-# This extension depends on git-svn and pass being present on the
-# system.
+# This extension depends on
+# [git-svn](https://git-scm.com/docs/git-svn) and pass being present
+# on the system.
 #
 ###########################################################
 # ## Two pass configurations
@@ -103,7 +115,7 @@
 # This extension is based on some code found in password-store.sh from
 # the [standard linux password
 # manager](https://www.passwordstore.org/).  That code is licensed
-# under GPLv2+.  This extension is copyright 2017 James Vasile
+# under GPLv2+.  This extension is copyright 2017-2020 James Vasile
 # <james@opentechstrategies.com> and is released under the terms of
 # the [GNU General Public License, Version
 # 3](https://www.gnu.org/licenses/gpl-3.0-standalone.html) or later.
