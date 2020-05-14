@@ -32,7 +32,7 @@ distrib/${DEBNAME}: git-svn.bash Makefile
 		DEBFULLNAME="${DEBFULLNAME}" \
 		DEBEMAIL="${DEBEMAIL}" \
 		dh_make -y -i -c gpl3 --createorig; \
-		echo ${BIN} /usr/lib/password-store/extensions > debian/install 
+		echo ${BIN} /usr/lib/password-store/extensions > debian/install
 	@./git-svn.bash | go-md2man > ${DEBFOLDERNAME}/debian/manpage.1
 	@scripts/git2changelog > ${DEBFOLDERNAME}/debian/changelog
 	@cd ${DEBFOLDERNAME}/debian; \
@@ -47,7 +47,7 @@ distrib/${DEBNAME}: git-svn.bash Makefile
 		sed -i '$$ d' control; \
 		echo " ${LONG_DESCRIPTION}" >> control; \
 		sed -i "s!^Source: .*!Source: ${GIT_BROWSE}!" copyright; \
-		sed -i "s!^Copyright: .*!Copyright:  2017 James Vasile <james@jamesvasile.com>!" copyright; \
+		sed -i "s!^Copyright: .*!Copyright:  2017-2020 James Vasile <james@jamesvasile.com>!" copyright; \
 		sed -i "/likewise for another author/d" copyright; \
 		sed -i "/^\\#.*/d" copyright;
 	@cd ${DEBFOLDERNAME}; \
@@ -76,4 +76,4 @@ distclean:
 
 clean: distclean
 
-.PHONY: distrib 
+.PHONY: distrib

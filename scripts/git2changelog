@@ -52,10 +52,10 @@ try:
                                   shell=True).decode('utf-8')
 except:
     sys.exit(-1)
-    
+
 # Gather up version numbers
 commits = re.split("\ncommit ", git_log)
-versions = []
+versions = ["0.0.0"]
 for commit in reversed(commits):
     line = commit.split("\n")[0]
     if line.startswith("commit "):
