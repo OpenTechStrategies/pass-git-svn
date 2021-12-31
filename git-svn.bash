@@ -42,7 +42,7 @@
 ############################################################
 # ## Using pass-git-svn
 #
-# You can use pass as you normally would.  It's in-built git routines
+# You can use pass as you normally would.  Its in-built git routines
 # will keep checking in your local changes.  When it's time to sync
 # with your svn server, use `pass git-svn fetch` and `pass git-svn
 # rebase` to pull down changes.  Then, use `pass git-svn dcommit` to
